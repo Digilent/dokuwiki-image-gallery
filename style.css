@@ -1,0 +1,30 @@
+.image-gallery
+{
+	width: 100%;	
+	min-width: 250px;
+	height: 350px;
+}
+
+.image-gallery .large-image
+{	
+	height: 75%;
+	width: 100%;
+}
+
+.image-gallery .large-image img
+{
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+	display: block;
+}
+
+.image-gallery .thumbnails
+{
+	width: 100%;
+}
+
+.image-gallery .thumbnails img
+{
+	width: 10%;
+}

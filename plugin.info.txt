@@ -1,0 +1,7 @@
+base digilentimagegallery
+author Sam Kristoff
+email admin@digilent.com
+date 05-2016
+name Digilent Image Gallery
+desc Dokuwiki Image Gallery by Digilent
+url www.github.com/digilent/dokuwiki-image-gallery

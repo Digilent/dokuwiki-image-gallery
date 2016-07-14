@@ -19,6 +19,7 @@ require_once DOKU_PLUGIN.'syntax.php';
 //Using PEAR Templates
 require_once "HTML/Template/IT.php";
 
+date_default_timezone_set('America/Los_Angeles');
  
 /********************************************************************************************************************************
 * All DokuWiki plugins to extend the parser/rendering mechanism
@@ -81,6 +82,14 @@ class syntax_plugin_digilentimagegallery extends DokuWiki_Syntax_Plugin
 			case DOKU_LEXER_UNMATCHED :
 				break;
 			case DOKU_LEXER_EXIT :
+			
+				//Set first image meta data
+				/*
+				global $ID;
+				$metaData = p_get_metadata($ID);
+				$metaData["relation"]["firstimage"] = 'ASDF';
+				p_set_metadata($ID, $metaData);
+				*/
 								
 				//----------Process User Data Into Image Gallery----------
 				
@@ -104,8 +113,12 @@ class syntax_plugin_digilentimagegallery extends DokuWiki_Syntax_Plugin
 					$imageGalleryTpl->parseCurrentBlock("THUMBNAILS");
 					$imageIndex++;
 				}
-								
+				
+				logger("Processing Data");				
 				$output = $imageGalleryTpl->get(); 
+				
+				//Clear Image Array
+				$this->images = array();
 				
 				return array($state, $output);				
 				break;
@@ -133,7 +146,7 @@ class syntax_plugin_digilentimagegallery extends DokuWiki_Syntax_Plugin
 			  
 				//Extract cached render data and add to renderer
 				$output = $data[1];				
-				$renderer->doc .= $output;	
+				$renderer->doc .= $output;				
 				break;
 				
 			  case DOKU_LEXER_SPECIAL :
@@ -142,5 +155,16 @@ class syntax_plugin_digilentimagegallery extends DokuWiki_Syntax_Plugin
             return true;
         }
         return false;
-    }	
+    }
+	
+	
+	
 }
+
+function logger($value)
+{
+	$filePath = "/var/www/html/logs/digilentimagegallery.txt";
+	file_put_contents($filePath, date("Y m d h:i:s A"));
+	file_put_contents($filePath, "\n" . $value . "\n", FILE_APPEND);
+	return true;
+}	

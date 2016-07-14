@@ -2,12 +2,12 @@
 {
 	width: 100%;	
 	min-width: 250px;
-	height: 350px;
+	height: 500px;
 }
 
 .image-gallery .large-image
 {	
-	height: 75%;
+	height: 55%;
 	width: 100%;
 }
 

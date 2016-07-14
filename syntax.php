@@ -161,10 +161,10 @@ class syntax_plugin_digilentimagegallery extends DokuWiki_Syntax_Plugin
 	
 }
 
-function logger($value)
-{
-	$filePath = "/var/www/html/logs/digilentimagegallery.txt";
-	file_put_contents($filePath, date("Y m d h:i:s A"));
+function logger($value, $id="Unknown Page", $log="log")
+{	
+	$filePath = "/var/www/html/logs/" . $log . ".txt";
+	file_put_contents($filePath, date("Y m d h:i:s A") . " - " . $id);
 	file_put_contents($filePath, "\n" . $value . "\n", FILE_APPEND);
 	return true;
 }	
